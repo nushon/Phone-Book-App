@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        main{
+            display: grid;
+            justify-content: center;
+            background-color: gray;
+        }
+        #nav-bar{
+            text-decoration: none;
+            background-color: black;
+            color: white;
+            width: 100%;
+            text-align: center;
+        }
+
+        a{
+            text-decoration: none;
+            font-size: large;
+            color: white;
+           
+        }
+
+        #contacts{
+            font-size: x-large;
+        }
+
+
+        /* BONUS */
+        
+        /* Apply style to this page */
+    </style>
+</head>
+<body>
+    <main>
+        <section id="nav-bar">
+            <a href="/">View Contacts</a> <br> <br>
+            <a href="/contact/create">Create Contact</a>
+        </section>
+        <section id="contacts">
+
+            <h1>Contacts</h1>
+            
+            <!-- Display your names and contacts here -->
+        </section>
+    </main>
+
+    <script>
+
+        var myContacts = document.getElementById('contacts');
+
+        
+
+        fetch('/contacts')
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+
+            let albin = data.row;
+            albin.forEach(element => {
+                myContacts.innerHTML += `
+                <ul text-decoration = "none">
+                    <li>Id: ${element.rowid}
+                    <li>Name: ${element.name}</li>
+                    <li>Contact: ${element.contact}</li>
+                </ul>`
+            });
+        })
+
+        
+
+        // TODO
+
+        /**
+         * Make a GET request to the "contacts" route
+         * From the result, display the names and contacts to the user
+         * You should use a table or list to display the items
+        */
+    </script>
+</body>
+</html>

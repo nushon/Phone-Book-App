@@ -1,0 +1,1 @@
+CREATE TABLE PhoneBook(id int PRIMARY KEY, "Name" varchar(255), "Number" varchar(225));

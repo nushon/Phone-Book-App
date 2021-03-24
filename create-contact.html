@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Contact</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        main{
+            display: grid;
+            justify-content: center;
+            background-color: gray;
+            height: 668px;
+        }
+        input{
+            margin: 10px 0px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: large;
+        }
+
+        #form{
+            margin: 0px 0px 200px 0px;
+        }
+
+        button{
+            padding: 5px;
+            font-size: medium;
+            border-radius: 5px;
+            border: none;
+        }
+
+        #nav-bar{
+            text-decoration: none;
+            background-color: black;
+            color: white;
+            /* width: 100%; */
+            text-align: center;
+            height: 70px;
+        }
+
+        a{
+            text-decoration: none;
+            font-size: large;
+            color: white;
+           
+        }
+
+
+        /* BONUS */
+        
+        /* Apply style to this page */
+    </style>
+</head>
+<body>
+    <main>
+        <section id="nav-bar">
+            <a href="/">View Contacts</a> <br> <br>
+            <a href="/contact/create">Create Contact</a>
+        </section>
+        <section id="form">
+            <form>
+                <input type="text" placeholder="Name" id="name">
+                <br>
+                <input type="text" placeholder="Contact" id="contact">
+                <br>
+                <button onclick="createContact()">Create</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        function createContact(){
+            // TODO
+
+            /**
+             * Get the value from the input elements
+             * Make a POST request to the route "create"
+             * Notify the user if the contact was created
+            */
+           var name = document.getElementById("name").value;
+           var contact = document.getElementById("contact").value;
+
+           let obj ={
+               name: name,
+               contact: contact
+           }
+           console.log(obj);
+
+           fetch("/create", {
+               method: "POST",
+               "Content-Type": "application/json",
+               body: JSON.stringify(obj)
+           })
+
+           .then(response => response.json())
+           .then(data => {
+               console.log("Me: ", data)
+               location.replace('/');
+               console.log({ data });
+           })
+           .catch(err => {
+               console.log(err);
+           })
+        }
+
+    </script>
+</body>
+</html>
